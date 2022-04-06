@@ -45,7 +45,6 @@ function Search() {
           onChange={handleChange}
           value={query}
         />
-        {/* <button type="submit">Search</button> */}
         <button type="submit" onClick={Push}>Search</button>
 
       </form>
