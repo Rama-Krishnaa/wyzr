@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Logout from "./Logout";
 
 const Home = () => {
   return (
     <div className="container">
-      <h3>Login successful!</h3>
-      <h1>You are in Home Page</h1>
+      <Logout />
+      <h3>Home Page</h3>
       <Link to="/search">Want to know about a book?</Link>
     </div>
   );

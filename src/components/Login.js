@@ -1,25 +1,26 @@
 import React from "react";
 import { GoogleLogin } from "react-google-login";
 import { useNavigate } from 'react-router-dom';
+import { refreshTokenSetup } from '../utils/refreshToken';
 import '../App.css';
 
 function Login() {
   const navigate = useNavigate();
 
-  function handleSubmit() {
+  function handleSubmit(res) {
     navigate("/home");
-    console.log('Login successful');
+    alert(`Welcome ${res.profileObj.givenName}`);
+    refreshTokenSetup(res);
   }
 
-  const responseGoogle = (response) => {
-    localStorage.setItem('user', JSON.stringify(response.profileObj));
-    console.log('Login failed');
+  const responseGoogle = (res) => {
+    localStorage.setItem('user', JSON.stringify(res.profileObj));
+    alert('Login failed');
   };
 
   return (
-    <div>
+    <div className="signIn-btn">
       <GoogleLogin
-      className="signIn-btn"
         clientId={`${process.env.REACT_APP_GOOGLE_API_TOKEN}`}
         buttonText="Sign in with Google"
         onSuccess={handleSubmit}
