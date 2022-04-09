@@ -3,16 +3,17 @@ import axios from "axios";
 import database from "./firebase";
 
 function Search() {
-
-
   const [query, setQuery] = useState("");
   const [result, setResult] = useState([]);
 
-  const Push = () =>{
-    database.ref("queries").set({
-      query : query,
-    }).catch(alert);
-  }
+  const Push = () => {
+    database
+      .ref("queries")
+      .set({
+        query: query,
+      })
+      .catch(alert);
+  };
 
   function handleChange(e) {
     const query = e.target.value;
@@ -33,35 +34,45 @@ function Search() {
       .catch((err) => {
         console.log(err);
       });
-
   }
 
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit}>
+    <div>
+      <form onSubmit={handleSubmit} className="flex items-center justify-center gap-3 p-10">
         <input
+          className="border-2 rounded-md p-2"
           type="text"
           placeholder="Search for any book"
           onChange={handleChange}
           value={query}
         />
-        <button type="submit" onClick={Push}>Search</button>
-
+        <button
+          className="text-white bg-purple-700  font-medium rounded-md text-sm px-5 py-2.5 mr-2 focus:outline-none"
+          type="submit"
+          onClick={Push}
+        >
+          Search
+        </button>
       </form>
-      {result.map((item) => (
-        <a target="_blank" rel="noopener noreferrer" href={item.volumeInfo.previewLink}>
-          <img
-            src={
-              item.volumeInfo.imageLinks === undefined
-                ? ""
-                : `${item.volumeInfo.imageLinks.thumbnail}`
-            }
-            key={item.id}
-            alt={item.volumeInfo.title}
-          />
-        </a>
-      ))}
-
+      <div className="grid gap-5 grid-cols-4 p-10">
+        {result.map((item) => (
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={item.volumeInfo.previewLink}
+          >
+            <img
+              src={
+                item.volumeInfo.imageLinks === undefined
+                  ? ""
+                  : `${item.volumeInfo.imageLinks.thumbnail}`
+              }
+              key={item.id}
+              alt={item.volumeInfo.title}
+            />
+          </a>
+        ))}
+      </div>
     </div>
   );
 }

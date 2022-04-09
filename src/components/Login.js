@@ -2,7 +2,6 @@ import React from "react";
 import { GoogleLogin } from "react-google-login";
 import { useNavigate } from 'react-router-dom';
 import { refreshTokenSetup } from '../utils/refreshToken';
-import '../App.css';
 
 function Login() {
   const navigate = useNavigate();
@@ -19,7 +18,7 @@ function Login() {
   };
 
   return (
-    <div className="signIn-btn">
+    <div className="flex items-center justify-center h-screen py-6 sm:py-12">
       <GoogleLogin
         clientId={`${process.env.REACT_APP_GOOGLE_API_TOKEN}`}
         buttonText="Sign in with Google"

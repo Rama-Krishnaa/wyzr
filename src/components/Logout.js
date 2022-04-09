@@ -11,7 +11,7 @@ function Logout() {
   };
 
   return (
-    <div>
+    <div className="py-6">
       <GoogleLogout
         clientId={`${process.env.REACT_APP_GOOGLE_API_TOKEN}`}
         buttonText='Sign out'
