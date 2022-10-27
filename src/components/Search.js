@@ -3,7 +3,7 @@ import axios from "axios";
 import database from "./firebase";
 
 function Search() {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState([]);
   const [result, setResult] = useState([]);
 
   const Push = () => {

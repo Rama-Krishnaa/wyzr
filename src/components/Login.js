@@ -13,7 +13,7 @@ function Login() {
   }
 
   const responseGoogle = (res) => {
-    localStorage.setItem('user', JSON.stringify(res.profileObj));
+    // localStorage.setItem('user', JSON.stringify(res.profileObj));
     alert('Login failed');
   };
 
